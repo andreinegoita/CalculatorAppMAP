@@ -1,9 +1,23 @@
 ﻿<Window x:Class="CalculatorProject.MemoryWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Memorie Calculator" Height="300" Width="200">
-    <Grid>
-        <ListBox Name="MemoryListBox" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Button Content="Închide" VerticalAlignment="Bottom" Click="CloseButton_Click"/>
+        Title="Memorie Calculator" Height="400" Width="300">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Memorie:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ListBox Name="MemoryListBox" Height="250">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}" Width="80" FontSize="14"/>
+                            <Button Content="M+" Click="MemoryAdd_Click" Tag="{Binding}" Width="40" Margin="5,0,0,0"/>
+                            <Button Content="M-" Click="MemorySubtract_Click" Tag="{Binding}" Width="40" Margin="5,0,0,0"/>
+                            <Button Content="MC" Click="MemoryClear_Click" Tag="{Binding}" Width="40" Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Content="Închide" Click="CloseButton_Click" Margin="0,10,0,0"/>
+        </StackPanel>
     </Grid>
 </Window>

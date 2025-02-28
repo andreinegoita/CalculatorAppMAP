@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CalculatorProject.Model;
 
 namespace CalculatorProject
@@ -213,15 +214,39 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
-                _memoryStack.Add(currentValue);
-                _memoryValue = currentValue;
-                DisplayText = string.Empty;
+                if (!_memoryStack.Contains(currentValue)) 
+                {
+                    _memoryStack.Add(currentValue);
+                    _memoryValue = currentValue;
+                    DisplayText = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Aceasta valoare este deja stocata in memorie!");
+                }
             }
         }
 
         public void MemoryRecall()
         {
-            DisplayText = _memoryValue.ToString();
+            if (_memoryStack.Count > 0)
+            {
+                DisplayText = _memoryStack[^1].ToString();
+            }
+            else
+            {
+                DisplayText = "0";
+            }
+        }
+
+       
+
+        public void MemoryClearItem(double value)
+        {
+            if (_memoryStack.Contains(value))
+            {
+                _memoryStack.Remove(value);
+            }
         }
 
         public string MemoryShow()

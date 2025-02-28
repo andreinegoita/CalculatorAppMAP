@@ -57,7 +57,7 @@
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="+" Grid.ColumnSpan="2" Margin="91,111,17,60" Grid.RowSpan="2"  Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="2" Content="=" Margin="91,61,17,-9" Grid.ColumnSpan="2"  Background="DarkViolet" Click="EqualButton_Click"/>
                 <Button Grid.Column="0" Content="MC" Margin="2,27,63,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
-                <Button Content="MR" Margin="80,27,98,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
+                <Button Content="MR" Click="MemoryRecallButton_Click" Margin="80,27,98,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
                 <Button Content="M+" Margin="42,27,23,66"  Grid.Column="1" Grid.Row="1" Click="MemoryAddButton_Click" Background="Gray"  Foreground="White" />
                 <Button Grid.Column="2" Content="M-" Click="MemorySubtractButton_Click" Margin="8,27,0,66"  Grid.Row="1" HorizontalAlignment="Left" Width="48" Background="Gray"  Foreground="White"/>
                 <Button Grid.Column="2" Content="MS"  Click="MemoryStoreButton_Click" Margin="80,27,98,67"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>

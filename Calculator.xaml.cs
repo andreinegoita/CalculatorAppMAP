@@ -195,10 +195,20 @@ namespace CalculatorProject
         private void MemoryShowButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as CalculatorViewModel;
-            if (viewModel != null)
+            if (viewModel != null && viewModel.MemoryStack.Count > 0)
             {
                 MemoryWindow memoryWindow = new MemoryWindow(viewModel.MemoryStack);
-                memoryWindow.Show();
+                if (memoryWindow.ShowDialog() == true)
+                {
+                    if (memoryWindow.SelectedValue.HasValue)
+                    {
+                        viewModel.DisplayText = memoryWindow.SelectedValue.Value.ToString();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Memoria este goală!", "Atenție", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
