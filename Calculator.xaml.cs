@@ -1,53 +1,44 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CalculatorProject;
 
-namespace CalculatorProject;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-/// 
-public partial class MainWindow : Window
+namespace CalculatorProject
 {
-    
-    public MainWindow()
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
-        ViewModel = new Calculator();
-        this.DataContext = ViewModel;
-    }
-
-    internal Calculator ViewModel { get; private set; }
-
-    private void DigitButton_Click(object sender, RoutedEventArgs e)
-    {
-        var button = sender as Button;
-        if (button != null)
+        public MainWindow()
         {
-            ViewModel.AppendDigit(button.Content.ToString());
+            InitializeComponent();
+            DataContext = new CalculatorViewModel();  // Setăm DataContext-ul la CalculatorViewModel
         }
+
+        private void DigitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+                var viewModel = DataContext as CalculatorViewModel;
+                viewModel?.AppendDigit(button.Content.ToString());
+            }
+        }
+
+        private void OperatorButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            string operatorSymbol = button.Content.ToString();
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.SetOperator(operatorSymbol);
+        }
+
+        private void EqualButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.CalculateResult();
+        }
+        private void ChangeSignButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.ChangeSign();
+        }
+
     }
-
-    private void OperatorButton_Click(object sender, RoutedEventArgs e)
-    {
-        Button button = sender as Button;
-        string operatorSymbol = button.Content.ToString();
-        ViewModel.SetOperator(operatorSymbol); 
-    }
-
-    private void EqualButton_Click(object sender, RoutedEventArgs e)
-    {
-        ViewModel.CalculateResult(); 
-    }
-
-
 }

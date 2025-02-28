@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using CalculatorProject.Model;
 
 namespace CalculatorProject
 {
-    class Calculator:INotifyPropertyChanged
+    class CalculatorViewModel:INotifyPropertyChanged
     {
+        private CalculatorModel _calculatorModel;
         private string _displayText;
-        private double _lastValue;
-        private string _currentOperator;
         public string DisplayText
         {
             get { return _displayText; }
@@ -20,72 +21,86 @@ namespace CalculatorProject
                 if (_displayText != value)
                 {
                     _displayText = value;
-                    OnPropertyChanged(nameof(DisplayText));
+                    OnPropertyChanged();
                 }
             }
         }
 
-        public Calculator()
+
+
+        public CalculatorViewModel()
         {
+            _calculatorModel = new CalculatorModel();
             DisplayText = string.Empty;
-            _lastValue = 0;
-            _currentOperator = string.Empty;
         }
 
         public void AppendDigit(string digit)
         {
             DisplayText += digit;
         }
+        public void SetOperator(string operatorSymbol)
+        {
+            if (_calculatorModel.CurrentOperator != null)
+            {
+                CalculateResult();
+            }
+            _calculatorModel.LastValue = double.Parse(DisplayText);
+            _calculatorModel.CurrentOperator = operatorSymbol;
+            DisplayText = $"{_calculatorModel.LastValue} {_calculatorModel.CurrentOperator} ";
+        }
+
 
         public void CalculateResult()
         {
-            if (_currentOperator == string.Empty)
+            if (_calculatorModel.CurrentOperator == null)
                 return;
 
             double currentValue = double.Parse(DisplayText.Substring(DisplayText.LastIndexOf(' ') + 1));
             double result = 0;
 
-            switch (_currentOperator)
+            switch (_calculatorModel.CurrentOperator)
             {
                 case "+":
-                    result = _lastValue + currentValue;
+                    result = _calculatorModel.LastValue + currentValue;
                     break;
                 case "-":
-                    result = _lastValue - currentValue;
+                    result = _calculatorModel.LastValue - currentValue;
                     break;
                 case "*":
-                    result = _lastValue * currentValue;
+                    result = _calculatorModel.LastValue * currentValue;
                     break;
                 case "÷":
                     if (currentValue != 0)
-                        result = _lastValue / currentValue;
+                        result = _calculatorModel.LastValue / currentValue;
                     else
-                    { 
-                       DisplayText = "Error";
+                    {
+                        DisplayText = "Error";
+                        return;
                     }
                     break;
-                    
             }
 
-            DisplayText = result.ToString(); 
-            _currentOperator = string.Empty; 
+            DisplayText = result.ToString();
+            _calculatorModel.CurrentOperator = null;
         }
- 
-        public void SetOperator(string operatorSymbol)
+
+        public void ChangeSign()
         {
-            if (_currentOperator != string.Empty)
+            if (double.TryParse(DisplayText, out double currentValue))
             {
-                CalculateResult();  
+                if (currentValue != 0)
+                {
+                    DisplayText = (-currentValue).ToString();
+                }
             }
-
-            _lastValue = double.Parse(DisplayText); 
-            _currentOperator = operatorSymbol; 
-            DisplayText = $"{_lastValue} {_currentOperator} ";
         }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

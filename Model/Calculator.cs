@@ -8,6 +8,7 @@ namespace CalculatorProject.Model
 {
     class CalculatorModel
     {
-        public string DisplayText { get; set; }
+        public double LastValue { get; set; }
+        public string CurrentOperator { get; set; }
     }
 }
