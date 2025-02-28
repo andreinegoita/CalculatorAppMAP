@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Calculator" Height="690" Width="440"
         KeyDown="Window_KeyDown"
-        PreviewKeyDown="Window_PreviewKeyDown">
+        PreviewKeyDown="Window_PreviewKeyDown"
+        Loaded="Window_Loaded">
     <Viewbox Stretch="Uniform">
         <Grid Margin="0,0,-18,-1">
             <Grid.RowDefinitions>
@@ -69,7 +70,7 @@
                 </MenuItem>
             </Menu>
 
-            <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top"/>
+            <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top" />
 
 
         </Grid>

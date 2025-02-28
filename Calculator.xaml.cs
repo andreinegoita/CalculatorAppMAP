@@ -134,12 +134,31 @@ namespace CalculatorProject
 
         private void StandardMode_Click(object sender, RoutedEventArgs e)
         {
-            SelectedOptionText.Text = "Standard Mode";  // Actualizează textul în TextBlock
+            SelectedOptionText.Text = "Standard Mode";  
+            Properties.Settings.Default.LastSelectedMode = "Standard";
+            Properties.Settings.Default.Save();
         }
 
         private void ProgrammingMode_Click(object sender, RoutedEventArgs e)
         {
-            SelectedOptionText.Text = "Programming Mode";  // Actualizează textul în TextBlock
+            SelectedOptionText.Text = "Programming Mode";  
+            Properties.Settings.Default.LastSelectedMode = "Programming";
+            Properties.Settings.Default.Save();
+        }
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            string lastSelectedMode = Properties.Settings.Default.LastSelectedMode;
+
+            if (lastSelectedMode == "Standard")
+            {
+                StandardMode_Click(null, null);
+            }
+            else if (lastSelectedMode == "Programming")
+            {
+                ProgrammingMode_Click(null, null);
+            }
         }
 
 
