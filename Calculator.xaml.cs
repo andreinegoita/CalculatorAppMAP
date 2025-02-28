@@ -36,4 +36,18 @@ public partial class MainWindow : Window
             ViewModel.AppendDigit(button.Content.ToString());
         }
     }
+
+    private void OperatorButton_Click(object sender, RoutedEventArgs e)
+    {
+        Button button = sender as Button;
+        string operatorSymbol = button.Content.ToString();
+        ViewModel.SetOperator(operatorSymbol); 
+    }
+
+    private void EqualButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.CalculateResult(); 
+    }
+
+
 }

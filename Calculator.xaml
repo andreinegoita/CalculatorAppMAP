@@ -48,11 +48,11 @@
                 <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="0" Content="CE" Margin="96,69,12,102"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
                 <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="1" Content="C" Margin="93,69,15,102" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
                 <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="2" Content="X" Margin="90,69,18,102"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
-                <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="2" Content="÷" Margin="90,20,18,32"  Grid.ColumnSpan="2" Background="Gray"   Foreground="White"/>
+                <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="2" Content="÷" Margin="90,20,18,32"  Grid.ColumnSpan="2" Background="Gray"   Foreground="White" Click="OperatorButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="2" Content="*" Margin="90,90,18,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="-" Margin="91,42,17,11" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="+" Grid.ColumnSpan="2" Margin="91,111,17,60" Grid.RowSpan="2"  Background="Gray"  Foreground="White"/>
-                <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="2" Content="=" Margin="91,61,17,-9" Grid.ColumnSpan="2"  Background="DarkViolet" />
+                <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="2" Content="=" Margin="91,61,17,-9" Grid.ColumnSpan="2"  Background="DarkViolet" Click="EqualButton_Click"/>
                 <Button Grid.Column="0" Content="MC" Margin="2,27,63,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
                 <Button Content="MR" Margin="80,27,98,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
                 <Button Content="M+" Margin="42,27,23,66"  Grid.Column="1" Grid.Row="1" Background="Gray"  Foreground="White" />
