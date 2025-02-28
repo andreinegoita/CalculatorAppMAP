@@ -132,6 +132,18 @@ namespace CalculatorProject
 
         }
 
+        private void StandardMode_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedOptionText.Text = "Standard Mode";  // Actualizează textul în TextBlock
+        }
+
+        private void ProgrammingMode_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedOptionText.Text = "Programming Mode";  // Actualizează textul în TextBlock
+        }
+
+
+
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Space) e.Handled = true; 

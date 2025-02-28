@@ -15,7 +15,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="Display" FontSize="24" Margin="8,29,27,475"  Grid.RowSpan="2" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="Display" FontSize="24" Margin="8,29,27,475"  Grid.RowSpan="2" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"/>
 
             <Grid Grid.Row="1" Margin='8,0,-2,12'>
                 <Grid.RowDefinitions>
@@ -62,17 +62,13 @@
                 <Button Grid.Column="2" Content="MS" Margin="80,27,98,67"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>
                 <Button Grid.Column="3" Content="MV" Margin="37,26,28,67" Grid.Row="1" Background="Gray" Foreground="White"/>
             </Grid>
-            <Button Height="24" Content="☰" Margin="10,-17,371,0" VerticalAlignment="Top">
-                <Button.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Opțiune 1" />
-                        <MenuItem Header="Opțiune 2" />
-                        <MenuItem Header="Opțiune 3" />
-                        <MenuItem Header="Opțiune 4" />
-                        <MenuItem Header="Opțiune 5" />
-                    </ContextMenu>
-                </Button.ContextMenu>
-            </Button>
+            <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0">
+                <MenuItem Header="Mode" RenderTransformOrigin="0.545,0.024">
+                    <MenuItem Header="Standard" Click="StandardMode_Click"/>
+                    <MenuItem Header="Programming" Click="ProgrammingMode_Click"/>
+                </MenuItem>
+            </Menu>
+
             <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top"/>
 
 
