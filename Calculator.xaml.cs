@@ -168,5 +168,40 @@ namespace CalculatorProject
             if (e.Key == Key.Space) e.Handled = true; 
         }
 
+        private void MemoryAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.MemoryAdd();
+        }
+
+        private void MemorySubtractButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.MemorySubtract();
+        }
+
+        private void MemoryStoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.MemoryStore();
+        }
+
+        private void MemoryRecallButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.MemoryRecall();
+        }
+
+        private void MemoryShowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                MemoryWindow memoryWindow = new MemoryWindow(viewModel.MemoryStack);
+                memoryWindow.Show();
+            }
+        }
+
+
     }
 }

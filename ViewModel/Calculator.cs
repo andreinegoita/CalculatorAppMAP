@@ -13,6 +13,11 @@ namespace CalculatorProject
     {
         private CalculatorModel _calculatorModel;
         private string _displayText;
+        private List<double> _memoryStack = new List<double>();
+        public List<double> MemoryStack => _memoryStack;
+
+        private double _memoryValue = 0;
+
         public string DisplayText
         {
             get { return _displayText; }
@@ -188,6 +193,41 @@ namespace CalculatorProject
             DisplayText = "0";
         }
 
+        public void MemoryAdd()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                _memoryValue += currentValue;
+            }
+        }
+
+        public void MemorySubtract()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                _memoryValue -= currentValue;
+            }
+        }
+
+        public void MemoryStore()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                _memoryStack.Add(currentValue);
+                _memoryValue = currentValue;
+                DisplayText = string.Empty;
+            }
+        }
+
+        public void MemoryRecall()
+        {
+            DisplayText = _memoryValue.ToString();
+        }
+
+        public string MemoryShow()
+        {
+            return _memoryStack.Count > 0 ? string.Join(", ", _memoryStack) : "Memorie goală";
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
