@@ -31,33 +31,50 @@ namespace CalculatorProject
         public CalculatorViewModel()
         {
             _calculatorModel = new CalculatorModel();
-            DisplayText = string.Empty;
+            DisplayText = "0";
         }
 
         public void AppendDigit(string digit)
         {
-            DisplayText += digit;
+            if (DisplayText == "0" || DisplayText == "Error")
+            {
+                DisplayText = digit;
+            }
+            else
+            {
+                DisplayText += digit;
+            }
         }
+
         public void SetOperator(string operatorSymbol)
         {
             if (_calculatorModel.CurrentOperator != null)
             {
                 CalculateResult();
             }
-            _calculatorModel.LastValue = double.Parse(DisplayText);
-            _calculatorModel.CurrentOperator = operatorSymbol;
-            DisplayText = $"{_calculatorModel.LastValue} {_calculatorModel.CurrentOperator} ";
+
+            if (double.TryParse(DisplayText, out double number))
+            {
+                _calculatorModel.LastValue = number;
+                _calculatorModel.CurrentOperator = operatorSymbol;
+                DisplayText = "";
+            }
         }
+
 
 
         public void CalculateResult()
         {
-            if (_calculatorModel.CurrentOperator == null)
+            if (_calculatorModel.CurrentOperator == null || DisplayText == "")
                 return;
 
-            double currentValue = double.Parse(DisplayText.Substring(DisplayText.LastIndexOf(' ') + 1));
-            double result = 0;
+            if (!double.TryParse(DisplayText, out double currentValue))
+            {
+                DisplayText = "Error";
+                return;
+            }
 
+            double result = 0;
             switch (_calculatorModel.CurrentOperator)
             {
                 case "+":
@@ -84,6 +101,7 @@ namespace CalculatorProject
             _calculatorModel.CurrentOperator = null;
         }
 
+
         public void ChangeSign()
         {
             if (double.TryParse(DisplayText, out double currentValue))
@@ -95,7 +113,80 @@ namespace CalculatorProject
             }
         }
 
+        public void Inverse()
+        {
+            if (double.TryParse(DisplayText, out double currentValue) && currentValue != 0)
+            {
+                DisplayText = (1 / currentValue).ToString();
+            }
+            else
+            {
+                DisplayText = "Error";
+            }
+        }
 
+        public void Square()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                DisplayText = (currentValue * currentValue).ToString();
+            }
+        }
+
+
+        public void SquareRoot()
+        {
+            if (double.TryParse(DisplayText, out double currentValue) && currentValue >= 0)
+            {
+                DisplayText = Math.Sqrt(currentValue).ToString();
+            }
+            else
+            {
+                DisplayText = "Error";
+            }
+        }
+
+        public void Percentage()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                DisplayText = (currentValue / 100).ToString();
+            }
+        }
+
+        public void AppendDecimal()
+        {
+            if (DisplayText.Contains("."))
+                return;
+
+            DisplayText += ".";
+        }
+
+        public void Backspace()
+        {
+            if (DisplayText.Length > 1)
+            {
+                DisplayText = DisplayText.Substring(0, DisplayText.Length - 1);
+            }
+            else
+            {
+                DisplayText = "0"; 
+            }
+        }
+
+
+        public void ClearEntry()
+        {
+            DisplayText = "0";
+        }
+
+
+        public void ClearAll()
+        {
+            _calculatorModel.LastValue = 0;
+            _calculatorModel.CurrentOperator = null;
+            DisplayText = "0";
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

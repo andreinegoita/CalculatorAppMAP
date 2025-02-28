@@ -8,7 +8,7 @@ namespace CalculatorProject
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new CalculatorViewModel();  // Setăm DataContext-ul la CalculatorViewModel
+            DataContext = new CalculatorViewModel();  
         }
 
         private void DigitButton_Click(object sender, RoutedEventArgs e)
@@ -39,6 +39,57 @@ namespace CalculatorProject
             var viewModel = DataContext as CalculatorViewModel;
             viewModel?.ChangeSign();
         }
+
+        private void InverseButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.Inverse();
+        }
+
+        private void SquareButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.Square();
+        }
+
+        private void SquareRootButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.SquareRoot();
+        }
+
+        private void PercentageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.Percentage();
+        }
+
+
+        private void DecimalButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.AppendDecimal();
+        }
+
+        private void BackspaceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.Backspace();
+        }
+
+        private void ClearEntryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.ClearEntry();
+        }
+
+        private void ClearAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.ClearAll();
+        }
+
+
 
     }
 }
