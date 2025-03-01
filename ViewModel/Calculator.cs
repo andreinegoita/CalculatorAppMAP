@@ -246,6 +246,38 @@ namespace CalculatorProject
         }
 
 
+        public void CopyText()
+        {
+            if (!string.IsNullOrEmpty(DisplayText) && DisplayText != "0")
+            {
+                Clipboard.SetText(DisplayText);
+            }
+        }
+
+        public void CutText()
+        {
+            if (!string.IsNullOrEmpty(DisplayText) && DisplayText != "0")
+            {
+                Clipboard.SetText(DisplayText);
+                DisplayText = "0";  
+            }
+        }
+
+        public void PasteText()
+        {
+            if (Clipboard.ContainsText())
+            {
+                string clipboardText = Clipboard.GetText();
+                if (double.TryParse(clipboardText, out double number))
+                {
+                    DisplayText = number.ToString();
+                }
+                else
+                {
+                    DisplayText = "Error"; 
+                }
+            }
+        }
 
 
 

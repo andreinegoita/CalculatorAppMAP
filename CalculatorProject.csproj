@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="4962ee8228258c179a707f7371a08d2b.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="4962ee8228258c179a707f7371a08d2b.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>

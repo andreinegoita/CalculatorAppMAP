@@ -129,6 +129,21 @@ namespace CalculatorProject
                 case Key.OemPeriod: case Key.Decimal: viewModel.AppendDecimal(); break;
             }
 
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.C:
+                        viewModel.CopyText();
+                        break;
+                    case Key.X:
+                        viewModel.CutText();
+                        break;
+                    case Key.V:
+                        viewModel.PasteText();
+                        break;
+                }
+            }
 
         }
 
@@ -215,6 +230,31 @@ namespace CalculatorProject
         {
             var viewModel = DataContext as CalculatorViewModel;
             viewModel?.MemoryClear();
+        }
+
+
+        private void AboutShowButton_Click(object sender, RoutedEventArgs e)
+        {
+                About aboutWindow = new About();
+                aboutWindow.Show();
+        }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.CopyText();
+        }
+
+        private void CutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.CutText();
+        }
+
+        private void PasteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.PasteText();
         }
 
 

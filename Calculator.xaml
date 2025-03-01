@@ -8,7 +8,8 @@
         Title="Calculator" Height="690" Width="440"
         KeyDown="Window_KeyDown"
         PreviewKeyDown="Window_PreviewKeyDown"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        ResizeMode="NoResize">
     <Viewbox Stretch="Uniform">
         <Grid Margin="0,0,-18,-1">
             <Grid.RowDefinitions>
@@ -16,7 +17,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="Display" FontSize="24" Margin="8,29,27,475"  Grid.RowSpan="2" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"/>
+            <TextBox x:Name="Display" FontSize="24" Margin="8,29,27,475"  Grid.RowSpan="2" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"  BorderBrush="White" />
 
             <Grid Grid.Row="1" Margin='8,0,-2,12'>
                 <Grid.RowDefinitions>
@@ -66,9 +67,9 @@
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0" >
                 <MenuItem Header="Settings" RenderTransformOrigin="0.545,0.024">
                     <MenuItem Header="File" FlowDirection="LeftToRight">
-                        <MenuItem Header="Cut"/>
-                        <MenuItem Header="Copy"/>
-                        <MenuItem Header="Paste"/>
+                        <MenuItem Header="Cut" Click="CutButton_Click"/>
+                        <MenuItem Header="Copy" Click="CopyButton_Click"/>
+                        <MenuItem Header="Paste" Click="PasteButton_Click"/>
                         <MenuItem Header="Digit Grouping"/>
                     </MenuItem>
 
@@ -78,7 +79,7 @@
                     </MenuItem>
       
                     <MenuItem Header="Help">
-                        <MenuItem Header="About"/>
+                        <MenuItem Header="About" Click="AboutShowButton_Click"/> 
                     </MenuItem>
                 </MenuItem>
             </Menu>
