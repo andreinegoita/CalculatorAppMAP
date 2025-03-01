@@ -239,20 +239,16 @@ namespace CalculatorProject
             }
         }
 
-       
-
-        public void MemoryClearItem(double value)
+        public void MemoryClear()
         {
-            if (_memoryStack.Contains(value))
-            {
-                _memoryStack.Remove(value);
-            }
+            _memoryStack.Clear();
+            _memoryValue = 0;
         }
 
-        public string MemoryShow()
-        {
-            return _memoryStack.Count > 0 ? string.Join(", ", _memoryStack) : "Memorie goală";
-        }
+
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -56,17 +56,30 @@
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="-" Margin="91,42,17,11" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="+" Grid.ColumnSpan="2" Margin="91,111,17,60" Grid.RowSpan="2"  Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="2" Content="=" Margin="91,61,17,-9" Grid.ColumnSpan="2"  Background="DarkViolet" Click="EqualButton_Click"/>
-                <Button Grid.Column="0" Content="MC" Margin="2,27,63,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
+                <Button Grid.Column="0" Content="MC"  Click="MemoryClearButton_Click" Margin="2,27,63,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
                 <Button Content="MR" Click="MemoryRecallButton_Click" Margin="80,27,98,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
                 <Button Content="M+" Margin="42,27,23,66"  Grid.Column="1" Grid.Row="1" Click="MemoryAddButton_Click" Background="Gray"  Foreground="White" />
                 <Button Grid.Column="2" Content="M-" Click="MemorySubtractButton_Click" Margin="8,27,0,66"  Grid.Row="1" HorizontalAlignment="Left" Width="48" Background="Gray"  Foreground="White"/>
                 <Button Grid.Column="2" Content="MS"  Click="MemoryStoreButton_Click" Margin="80,27,98,67"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>
                 <Button Grid.Column="3" Content="MV"  Click="MemoryShowButton_Click" Margin="37,26,28,67" Grid.Row="1" Background="Gray" Foreground="White"/>
             </Grid>
-            <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0">
-                <MenuItem Header="Mode" RenderTransformOrigin="0.545,0.024">
-                    <MenuItem Header="Standard" Click="StandardMode_Click"/>
-                    <MenuItem Header="Programming" Click="ProgrammingMode_Click"/>
+            <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0" >
+                <MenuItem Header="Settings" RenderTransformOrigin="0.545,0.024">
+                    <MenuItem Header="File" FlowDirection="LeftToRight">
+                        <MenuItem Header="Cut"/>
+                        <MenuItem Header="Copy"/>
+                        <MenuItem Header="Paste"/>
+                        <MenuItem Header="Digit Grouping"/>
+                    </MenuItem>
+
+                    <MenuItem Header="Modes" FlowDirection="LeftToRight">
+                        <MenuItem Header="Mode Standard" Click="StandardMode_Click"/>
+                        <MenuItem Header="Mode Programming" Click="ProgrammingMode_Click"/>
+                    </MenuItem>
+      
+                    <MenuItem Header="Help">
+                        <MenuItem Header="About"/>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
 

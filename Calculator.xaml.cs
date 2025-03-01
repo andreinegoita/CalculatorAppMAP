@@ -211,6 +211,12 @@ namespace CalculatorProject
                 MessageBox.Show("Memoria este goală!", "Atenție", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        private void MemoryClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            viewModel?.MemoryClear();
+        }
+
 
 
     }
