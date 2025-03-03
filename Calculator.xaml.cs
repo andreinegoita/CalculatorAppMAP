@@ -340,5 +340,28 @@ namespace CalculatorProject
         }
 
 
+        private void ComplexOperationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel == null) return;
+
+            string inputExpression = Microsoft.VisualBasic.Interaction.InputBox(
+                "Introduceți expresia matematică:",
+                "Operatie Complexă",
+                ""
+            );
+
+            if (!string.IsNullOrWhiteSpace(inputExpression))
+            {
+                viewModel?.EvaluateComplexExpression(inputExpression);
+            }
+            else
+            {
+                MessageBox.Show("Expresia introdusă nu este validă!", "Eroare", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+
     }
 }

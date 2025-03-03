@@ -34,7 +34,6 @@ namespace CalculatorProject
             }
         }
 
-
         private string ConvertToBase(double number, int numberBase)
         {
             if (numberBase == 10)
@@ -395,8 +394,152 @@ namespace CalculatorProject
                 }
             }
         }
+        public void EvaluateComplexExpression(string expression)
+        {
+            if (expression.EndsWith("="))
+            {
+                expression.TrimEnd('=');
+                try
+                {
+                    double result = EvaluateExpression(expression);
+                    DisplayText = result.ToString();
+                }
+                catch (Exception)
+                {
+                    DisplayText = "Error";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Expresia nu este completa!");
+            }
+        }
 
+        private double EvaluateExpression(string expression)
+        {
+            var tokens = Tokenize(expression);
+            var postfix = InfixToPostfix(tokens);
+            return EvaluatePostfix(postfix);
+        }
 
+        private List<string> Tokenize(string expression)
+        {
+            var tokens = new List<string>();
+            StringBuilder number = new StringBuilder();
+            for (int i = 0; i < expression.Length; i++)
+            {
+                char c = expression[i];
+                if (char.IsDigit(c) || c == '.')
+                {
+                    number.Append(c);
+                }
+                else if (c == ' ')
+                {
+                    continue;
+                }
+                else
+                {
+                    if (number.Length > 0)
+                    {
+                        tokens.Add(number.ToString());
+                        number.Clear();
+                    }
+                    tokens.Add(c.ToString());
+                }
+            }
+            if (number.Length > 0)
+                tokens.Add(number.ToString());
+            return tokens;
+        }
+
+        private List<string> InfixToPostfix(List<string> tokens)
+        {
+            var output = new List<string>();
+            var opStack = new Stack<string>();
+
+            foreach (var token in tokens)
+            {
+                if (double.TryParse(token, out _))
+                {
+                    output.Add(token);
+                }
+                else if (IsOperator(token))
+                {
+                    while (opStack.Count > 0 && IsOperator(opStack.Peek()) &&
+                          GetPrecedence(opStack.Peek()) >= GetPrecedence(token))
+                    {
+                        output.Add(opStack.Pop());
+                    }
+                    opStack.Push(token);
+                }
+                else if (token == "(")
+                {
+                    opStack.Push(token);
+                }
+                else if (token == ")")
+                {
+                    while (opStack.Count > 0 && opStack.Peek() != "(")
+                    {
+                        output.Add(opStack.Pop());
+                    }
+                    if (opStack.Count > 0 && opStack.Peek() == "(")
+                        opStack.Pop();
+                }
+            }
+
+            while (opStack.Count > 0)
+                output.Add(opStack.Pop());
+
+            return output;
+        }
+
+        private double EvaluatePostfix(List<string> tokens)
+        {
+            var stack = new Stack<double>();
+
+            foreach (var token in tokens)
+            {
+                if (double.TryParse(token, out double num))
+                {
+                    stack.Push(num);
+                }
+                else if (IsOperator(token))
+                {
+                    double b = stack.Pop();
+                    double a = stack.Pop();
+                    switch (token)
+                    {
+                        case "+":
+                            stack.Push(a + b);
+                            break;
+                        case "-":
+                            stack.Push(a - b);
+                            break;
+                        case "*":
+                            stack.Push(a * b);
+                            break;
+                        case "/":
+                            stack.Push(a / b);
+                            break;
+                    }
+                }
+            }
+            return stack.Pop();
+        }
+
+        private bool IsOperator(string token)
+        {
+            return token == "+" || token == "-" || token == "*" || token == "/";
+        }
+
+        private int GetPrecedence(string op)
+        {
+            if (op == "+" || op == "-")
+                return 1;
+            if (op == "*" || op == "/")
+                return 2;
+            return 0;
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

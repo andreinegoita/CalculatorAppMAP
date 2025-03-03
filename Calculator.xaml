@@ -91,6 +91,9 @@
                         <MenuItem Header="Mode Programming" Click="ProgrammingMode_Click"/>
                     </MenuItem>
 
+                    <MenuItem Header="Complex Calculus" Click="ComplexOperationButton_Click">
+                    </MenuItem>
+
                     <MenuItem Header="Help">
                         <MenuItem Header="About" Click="AboutShowButton_Click"/>
                     </MenuItem>
