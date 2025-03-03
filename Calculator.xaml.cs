@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace CalculatorProject
 {
@@ -149,6 +150,15 @@ namespace CalculatorProject
 
         private void StandardMode_Click(object sender, RoutedEventArgs e)
         {
+            OperatorDivideBy1.IsEnabled = true;
+            Operatorx2.IsEnabled = true;
+            OperatorModulo.IsEnabled = true;
+            OperatorSquare.IsEnabled = true;
+            ConvertOption.IsEnabled = false;
+            ConvertOption.Background = Brushes.White;
+            ConvertOption.Foreground = Brushes.White;
+            ConvertOption.BorderBrush = Brushes.White;
+
             SelectedOptionText.Text = "Standard Mode";  
             Properties.Settings.Default.LastSelectedMode = "Standard";
             Properties.Settings.Default.Save();
@@ -156,10 +166,22 @@ namespace CalculatorProject
 
         private void ProgrammingMode_Click(object sender, RoutedEventArgs e)
         {
+            OperatorDivideBy1.IsEnabled = false;
+            Operatorx2.IsEnabled = false;
+            OperatorModulo.IsEnabled = false;
+            OperatorSquare.IsEnabled = false;
+            ConvertOption.IsEnabled = true;
+            ConvertOption.Background = Brushes.Gray;
+            ConvertOption.Foreground = Brushes.White;
+            ConvertOption.BorderBrush = Brushes.White;
             SelectedOptionText.Text = "Programming Mode";  
             Properties.Settings.Default.LastSelectedMode = "Programming";
             Properties.Settings.Default.Save();
+
         }
+
+        
+
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -268,6 +290,45 @@ namespace CalculatorProject
             }
         }
 
+        private void Base2_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                viewModel.CurrentBase = 2;
+                MessageBox.Show("Set to base 2");
+            }
+        }
+
+        private void Base8_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                viewModel.CurrentBase = 8;
+                MessageBox.Show("Set to base 8");
+            }
+        }
+
+        private void Base10_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                viewModel.CurrentBase = 10;
+                MessageBox.Show("Set to base 10");
+            }
+        }
+
+        private void Base16_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                viewModel.CurrentBase = 16;
+                MessageBox.Show("Set to base 16");
+            }
+        }
 
 
     }

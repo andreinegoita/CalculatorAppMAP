@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CalculatorProject.Model;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace CalculatorProject
 {
@@ -34,8 +34,70 @@ namespace CalculatorProject
             }
         }
 
+
+        private string ConvertToBase(double number, int numberBase)
+        {
+            if (numberBase == 10)
+                return number.ToString();
+
+            if (number < 0)
+                return "-" + ConvertToBase(-number, numberBase);
+
+            long integerPart = (long)number;
+            string result = Convert.ToString(integerPart, numberBase).ToUpper();
+
+            double fractionalPart = number - integerPart;
+            if (fractionalPart > 0 && numberBase != 2)
+            {
+                result += ".";
+                int precision = 5;
+                while (fractionalPart > 0 && precision > 0)
+                {
+                    fractionalPart *= numberBase;
+                    int digit = (int)fractionalPart;
+                    if (digit >= 10 && digit <= 15)
+                    {
+                        result += (char)('A' + (digit - 10)); 
+                    }
+                    else
+                    {
+                        result += digit.ToString();
+                    }
+                    fractionalPart -= digit;
+                    precision--;
+                }
+            }
+
+            return result;
+        }
+
+
+
+        public void ConvertResultToBase()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                DisplayText = ConvertToBase(currentValue, CurrentBase);
+            }
+        }
+
+
         public bool IsDigitGroupingEnabled { get; set; } = false;
 
+        private int _currentBase=10;
+        public int CurrentBase
+        {
+            get { return _currentBase; }
+            set
+            {
+                if (_currentBase != value)
+                {
+                    _currentBase = value;
+                    OnPropertyChanged();
+                    ReformatDisplay(); 
+                }
+            }
+        }
 
         public CalculatorViewModel()
         {
@@ -148,7 +210,15 @@ namespace CalculatorProject
                     break;
             }
 
-            DisplayText = FormatNumber(result);
+            if (CurrentBase != 10)
+            {
+                DisplayText = ConvertToBase(result, CurrentBase);
+            }
+            else
+            {
+                DisplayText = FormatNumber(result);
+
+            }
             _calculatorModel.CurrentOperator = null;
         }
 

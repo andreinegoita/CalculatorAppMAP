@@ -35,20 +35,20 @@
                 </Grid.ColumnDefinitions>
                 <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="7" Margin="-3,90,9,81" Grid.RowSpan="2" Click="DigitButton_Click "/>
                 <Button  Width="96" Height="66" Grid.Row="2" Content="8" Margin="96,90,12,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="1" Content="9" Margin="93,90,15,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
+                <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="1" Content="9" Margin="93,90,15,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="0" Content="4" Margin="-3,42,9,11" Click="DigitButton_Click"/>
-                        <Button  Width="96" Height="66" Grid.Row="3" Content="5" Grid.ColumnSpan="2" Margin="96,42,12,11" Click="DigitButton_Click"/>
+                <Button  Width="96" Height="66" Grid.Row="3" Content="5" Grid.ColumnSpan="2" Margin="96,42,12,11" Click="DigitButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="1" Content="6" Margin="93,42,15,11" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
-                            <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="0" Content="1" Margin="-3,111,9,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
+                <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="0" Content="1" Margin="-3,111,9,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Content="2" Grid.ColumnSpan="2" Margin="96,111,12,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
-                                <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="1" Content="3" Grid.ColumnSpan="2" Margin="93,111,15,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
+                <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="1" Content="3" Grid.ColumnSpan="2" Margin="93,111,15,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="4" Content="0" Margin="96,61,12,-9" Grid.ColumnSpan="2" Click="DigitButton_Click" />
                 <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="0" Content="+/-" Margin="-3,61,9,-9" Click="ChangeSignButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="1" Content="." Margin="93,61,15,-9" Grid.ColumnSpan="2" Click="DecimalButton_Click"/>
-                <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="1/x" Margin="-3,20,9,32"  Background="Gray"  Foreground="White" Click="InverseButton_Click"/>
-                <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="x²" Margin="96,20,12,32"  Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="SquareButton_Click" />
-                <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="1" Content="√x" Margin="93,20,15,32" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="SquareRootButton_Click"/>
-                <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="0" Content="%" Margin="-4,68,10,103"  Grid.RowSpan="2" Background="Gray"  Foreground="White"  Click="PercentageButton_Click"/>
+                <Button  Name="OperatorDivideBy1" Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="1/x" Margin="-3,20,9,32"  Background="Gray"  Foreground="White" Click="InverseButton_Click"/>
+                <Button  Name="Operatorx2" Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="x²" Margin="96,20,12,32"  Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="SquareButton_Click" />
+                <Button  Name="OperatorSquare" Width="96" Height="66" Grid.Row="2" Grid.Column="1" Content="√x" Margin="93,20,15,32" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="SquareRootButton_Click"/>
+                <Button  Name="OperatorModulo" Width="96" Height="66" Grid.Row="1" Grid.Column="0" Content="%" Margin="-4,68,10,103"  Grid.RowSpan="2" Background="Gray"  Foreground="White"  Click="PercentageButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="0" Content="CE" Click="BackspaceButton_Click" Margin="96,69,12,102"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
                 <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="1" Content="C" Click="ClearAllButton_Click" Margin="93,69,15,102" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
                 <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="2" Content="X" Click="BackspaceButton_Click" Margin="90,69,18,102"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
@@ -57,12 +57,21 @@
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="-" Margin="91,42,17,11" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="+" Grid.ColumnSpan="2" Margin="91,111,17,60" Grid.RowSpan="2"  Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
                 <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="2" Content="=" Margin="91,61,17,-9" Grid.ColumnSpan="2"  Background="DarkViolet" Click="EqualButton_Click"/>
-                <Button Grid.Column="0" Content="MC"  Click="MemoryClearButton_Click" Margin="2,27,63,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
-                <Button Content="MR" Click="MemoryRecallButton_Click" Margin="80,27,98,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
-                <Button Content="M+" Margin="42,27,23,66"  Grid.Column="1" Grid.Row="1" Click="MemoryAddButton_Click" Background="Gray"  Foreground="White" />
-                <Button Grid.Column="2" Content="M-" Click="MemorySubtractButton_Click" Margin="8,27,0,66"  Grid.Row="1" HorizontalAlignment="Left" Width="48" Background="Gray"  Foreground="White"/>
+                <Button Grid.Column="0" Content="MC"  Click="MemoryClearButton_Click" Margin="69,27,11,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
+                <Button Content="MR" Click="MemoryRecallButton_Click" Margin="130,27,60,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
+                <Button Content="M+" Margin="56,27,9,66"  Grid.Column="1" Grid.Row="1" Click="MemoryAddButton_Click" Background="Gray"  Foreground="White" />
+                <Button Grid.Column="2" Content="M-" Click="MemorySubtractButton_Click" Margin="13,27,0,66"  Grid.Row="1" HorizontalAlignment="Left" Width="48" Background="Gray"  Foreground="White"/>
                 <Button Grid.Column="2" Content="MS"  Click="MemoryStoreButton_Click" Margin="80,27,98,67"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>
                 <Button Grid.Column="3" Content="MV"  Click="MemoryShowButton_Click" Margin="37,26,28,67" Grid.Row="1" Background="Gray" Foreground="White"/>
+
+                <Menu Margin="1,0,72,66" Height="23" VerticalAlignment="Bottom" Grid.Row="1" Background="Gray" Foreground="White"   >
+                    <MenuItem  Name="ConvertOption" Header="Convert" RenderTransformOrigin="0.545,0.024"  Width="58" Height="23">
+                        <MenuItem Header="Base 2" Foreground="Black" Click="Base2_Click" />
+                        <MenuItem Header="Base 8" Foreground="Black" Click="Base8_Click"/>
+                        <MenuItem Header="Base 10" Foreground="Black" Click="Base10_Click"/>
+                        <MenuItem Header="Base 16" Foreground="Black" Click="Base16_Click"/>
+                    </MenuItem>
+                </Menu>
             </Grid>
             <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0" >
                 <MenuItem Header="Settings" RenderTransformOrigin="0.545,0.024">
@@ -77,14 +86,17 @@
                         <MenuItem Header="Mode Standard" Click="StandardMode_Click"/>
                         <MenuItem Header="Mode Programming" Click="ProgrammingMode_Click"/>
                     </MenuItem>
-      
+
                     <MenuItem Header="Help">
-                        <MenuItem Header="About" Click="AboutShowButton_Click"/> 
+                        <MenuItem Header="About" Click="AboutShowButton_Click"/>
                     </MenuItem>
                 </MenuItem>
             </Menu>
 
             <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top" />
+
+
+
 
 
         </Grid>
