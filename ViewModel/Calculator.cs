@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CalculatorProject.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CalculatorProject
 {
@@ -32,12 +34,55 @@ namespace CalculatorProject
             }
         }
 
+        public bool IsDigitGroupingEnabled { get; set; } = false;
 
 
         public CalculatorViewModel()
         {
             _calculatorModel = new CalculatorModel();
+            IsDigitGroupingEnabled = Properties.Settings.Default.IsDigitGroupingEnabled;
             DisplayText = "0";
+        }
+
+
+        private string FormatNumber(double number)
+        {
+            if (IsDigitGroupingEnabled)
+            {
+                return number.ToString("N0", CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                return number.ToString();
+            }
+        }
+
+        public void ToggleDigitGrouping()
+        {
+            IsDigitGroupingEnabled = !IsDigitGroupingEnabled;
+            Properties.Settings.Default.IsDigitGroupingEnabled = IsDigitGroupingEnabled;
+            Properties.Settings.Default.Save();
+            if (IsDigitGroupingEnabled)
+            {
+                MessageBox.Show("Digit grouping is enabled");
+            }
+            else
+            {
+                MessageBox.Show("Digit grouping is disabled");
+            }
+        }
+
+        public void ReformatDisplay()
+        {
+            if (IsDigitGroupingEnabled)
+            {
+                
+                string cleanText = DisplayText.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
+                if (double.TryParse(cleanText, out double number))
+                {
+                    DisplayText = number.ToString("N0", CultureInfo.CurrentCulture);
+                }
+            }
         }
 
         public void AppendDigit(string digit)
@@ -73,8 +118,8 @@ namespace CalculatorProject
         {
             if (_calculatorModel.CurrentOperator == null || DisplayText == "")
                 return;
-
-            if (!double.TryParse(DisplayText, out double currentValue))
+            string cleanText = DisplayText.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
+            if (!double.TryParse(cleanText, out double currentValue))
             {
                 DisplayText = "Error";
                 return;
@@ -103,7 +148,7 @@ namespace CalculatorProject
                     break;
             }
 
-            DisplayText = result.ToString();
+            DisplayText = FormatNumber(result);
             _calculatorModel.CurrentOperator = null;
         }
 
@@ -114,7 +159,8 @@ namespace CalculatorProject
             {
                 if (currentValue != 0)
                 {
-                    DisplayText = (-currentValue).ToString();
+                    currentValue = -currentValue;
+                    DisplayText = FormatNumber(currentValue);
                 }
             }
         }
@@ -123,7 +169,7 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue) && currentValue != 0)
             {
-                DisplayText = (1 / currentValue).ToString();
+                DisplayText = FormatNumber(1 / currentValue);
             }
             else
             {
@@ -135,7 +181,7 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
-                DisplayText = (currentValue * currentValue).ToString();
+                DisplayText = FormatNumber(currentValue * currentValue);
             }
         }
 
@@ -144,7 +190,7 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue) && currentValue >= 0)
             {
-                DisplayText = Math.Sqrt(currentValue).ToString();
+                DisplayText = FormatNumber(Math.Sqrt(currentValue));
             }
             else
             {
@@ -156,7 +202,7 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
-                DisplayText = (currentValue / 100).ToString();
+                DisplayText = FormatNumber(currentValue / 100);
             }
         }
 
@@ -231,7 +277,7 @@ namespace CalculatorProject
         {
             if (_memoryStack.Count > 0)
             {
-                DisplayText = _memoryStack[^1].ToString();
+                DisplayText = FormatNumber(_memoryStack[^1]);
             }
             else
             {
@@ -271,6 +317,7 @@ namespace CalculatorProject
                 if (double.TryParse(clipboardText, out double number))
                 {
                     DisplayText = number.ToString();
+                    ReformatDisplay();
                 }
                 else
                 {

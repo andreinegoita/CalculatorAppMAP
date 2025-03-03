@@ -258,6 +258,17 @@ namespace CalculatorProject
         }
 
 
+        private void DigitGroupingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                viewModel.ToggleDigitGrouping();
+                viewModel.ReformatDisplay();
+            }
+        }
+
+
 
     }
 }

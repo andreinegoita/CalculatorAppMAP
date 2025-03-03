@@ -70,7 +70,7 @@
                         <MenuItem Header="Cut" Click="CutButton_Click"/>
                         <MenuItem Header="Copy" Click="CopyButton_Click"/>
                         <MenuItem Header="Paste" Click="PasteButton_Click"/>
-                        <MenuItem Header="Digit Grouping"/>
+                        <MenuItem Header="Digit Grouping" Click="DigitGroupingButton_Click"/>
                     </MenuItem>
 
                     <MenuItem Header="Modes" FlowDirection="LeftToRight">

@@ -34,5 +34,17 @@ namespace CalculatorProject.Properties {
                 this["LastSelectedMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsDigitGroupingEnabled {
+            get {
+                return ((bool)(this["IsDigitGroupingEnabled"]));
+            }
+            set {
+                this["IsDigitGroupingEnabled"] = value;
+            }
+        }
     }
 }
