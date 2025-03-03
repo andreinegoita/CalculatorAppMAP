@@ -10,7 +10,8 @@ namespace CalculatorProject
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new CalculatorViewModel();  
+            DataContext = new CalculatorViewModel();
+            ConvertBaseShow.Text = "Current Base: 10";
         }
 
         private void DigitButton_Click(object sender, RoutedEventArgs e)
@@ -296,7 +297,9 @@ namespace CalculatorProject
             if (viewModel != null)
             {
                 viewModel.CurrentBase = 2;
-                MessageBox.Show("Set to base 2");
+                ConvertBaseShow.Text = "Current Base: 2";
+                Properties.Settings.Default.LastBaseUsed = "2";
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -306,7 +309,9 @@ namespace CalculatorProject
             if (viewModel != null)
             {
                 viewModel.CurrentBase = 8;
-                MessageBox.Show("Set to base 8");
+                ConvertBaseShow.Text = "Current Base: 8";
+                Properties.Settings.Default.LastBaseUsed = "8";
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -316,7 +321,9 @@ namespace CalculatorProject
             if (viewModel != null)
             {
                 viewModel.CurrentBase = 10;
-                MessageBox.Show("Set to base 10");
+                ConvertBaseShow.Text = "Current Base: 10";
+                Properties.Settings.Default.LastBaseUsed = "10";
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -326,7 +333,9 @@ namespace CalculatorProject
             if (viewModel != null)
             {
                 viewModel.CurrentBase = 16;
-                MessageBox.Show("Set to base 16");
+                ConvertBaseShow.Text = "Current Base: 16";
+                Properties.Settings.Default.LastBaseUsed = "16";
+                Properties.Settings.Default.Save();
             }
         }
 

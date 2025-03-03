@@ -12,14 +12,18 @@
         ResizeMode="NoResize">
     <Viewbox Stretch="Uniform">
         <Grid Margin="0,0,-18,-1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="35*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="Display" FontSize="24" Margin="8,29,27,475"  Grid.RowSpan="2" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"  BorderBrush="White" />
+            <TextBox x:Name="Display" FontSize="24" Margin="8,25,27,475" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"  BorderBrush="White" Grid.ColumnSpan="2" Grid.Row="1" />
 
-            <Grid Grid.Row="1" Margin='8,0,-2,12'>
+            <Grid Grid.Row="1" Margin='8,0,-2,12' Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -73,7 +77,7 @@
                     </MenuItem>
                 </Menu>
             </Grid>
-            <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0" >
+            <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0" Grid.RowSpan="2" >
                 <MenuItem Header="Settings" RenderTransformOrigin="0.545,0.024">
                     <MenuItem Header="File" FlowDirection="LeftToRight">
                         <MenuItem Header="Cut" Click="CutButton_Click"/>
@@ -93,7 +97,11 @@
                 </MenuItem>
             </Menu>
 
-            <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top" />
+            <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+            <TextBlock x:Name="ConvertBaseShow" Margin="11,-53,42,0"  FontSize="18" VerticalAlignment="Top" Height="21" />
+
+
+
 
 
 

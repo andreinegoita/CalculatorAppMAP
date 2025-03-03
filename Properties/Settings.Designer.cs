@@ -46,5 +46,17 @@ namespace CalculatorProject.Properties {
                 this["IsDigitGroupingEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastBaseUsed {
+            get {
+                return ((string)(this["LastBaseUsed"]));
+            }
+            set {
+                this["LastBaseUsed"] = value;
+            }
+        }
     }
 }
