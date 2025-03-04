@@ -17,23 +17,23 @@ This project is a WPF-based Calculator Application developed in C#. It features 
 
 
 # :books: Project Structure 
-  📂 CalculatorProject  
- ┣ 📂 Properties 
+ * 📂 CalculatorProject  
+ * ┣ 📂 Properties 
  * ┃ ┣ Settings.settings
- ┣ 📂 Model 
- ┃ ┣ 📜 Calculator.cs  
- ┣ 📂 View
- ┃ ┣ 📜 About.xaml
- ┃ ┣ 📜 About.xaml.cs
- ┃ ┣ 📜 Calculator.xaml
- ┃ ┣ 📜 Calculator.xaml.cs
- ┃ ┣ 📜 MemoryWindow.xaml
- ┃ ┣ 📜 MemoryWindow.xaml.cs
- ┣ 📂 View
- ┃ ┣ 📜 Calculator.xaml
- ┃ ┣ 📜 Calculator.xaml.cs
- ┣ 📜 README.md  
- ┣ 📜 .gitignore  
+ * ┣ 📂 Model 
+ * ┃ ┣ 📜 Calculator.cs  
+ * ┣ 📂 View
+ * ┃ ┣ 📜 About.xaml
+ * ┃ ┣ 📜 About.xaml.cs
+ * ┃ ┣ 📜 Calculator.xaml
+ * ┃ ┣ 📜 Calculator.xaml.cs
+ * ┃ ┣ 📜 MemoryWindow.xaml
+ * ┃ ┣ 📜 MemoryWindow.xaml.cs
+ * ┣ 📂 View
+ * ┃ ┣ 📜 Calculator.xaml
+ * ┃ ┣ 📜 Calculator.xaml.cs
+ * ┣ 📜 README.md  
+ * ┣ 📜 .gitignore  
 
 # :gear: Design and Arhitecture
 The project is organized on MVVM (Model-View-Controller) design pattern:
