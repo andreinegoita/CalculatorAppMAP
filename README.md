@@ -19,7 +19,7 @@ This project is a WPF-based Calculator Application developed in C#. It features 
 # :books: Project Structure 
   📂 CalculatorProject  
  ┣ 📂 Properties 
- ┃ ┣ Settings.settings
+ * ┃ ┣ Settings.settings
  ┣ 📂 Model 
  ┃ ┣ 📜 Calculator.cs  
  ┣ 📂 View
