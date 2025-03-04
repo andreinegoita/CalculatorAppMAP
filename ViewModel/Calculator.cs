@@ -15,7 +15,9 @@ namespace CalculatorProject
     class CalculatorViewModel:INotifyPropertyChanged
     {
         private CalculatorModel _calculatorModel;
+
         private string _displayText;
+
         private List<double> _memoryStack = new List<double>();
         public List<double> MemoryStack => _memoryStack;
 
@@ -69,18 +71,6 @@ namespace CalculatorProject
 
             return result;
         }
-
-
-
-        public void ConvertResultToBase()
-        {
-            if (double.TryParse(DisplayText, out double currentValue))
-            {
-                DisplayText = ConvertToBase(currentValue, CurrentBase);
-            }
-        }
-
-
         public bool IsDigitGroupingEnabled { get; set; } = false;
 
         private int _currentBase=10;
@@ -104,6 +94,18 @@ namespace CalculatorProject
             IsDigitGroupingEnabled = Properties.Settings.Default.IsDigitGroupingEnabled;
             DisplayText = "0";
         }
+
+
+
+
+        public void ConvertResultToBase()
+        {
+            if (double.TryParse(DisplayText, out double currentValue))
+            {
+                DisplayText = ConvertToBase(currentValue, CurrentBase);
+            }
+        }
+
 
 
         private string FormatNumber(double number)
@@ -329,6 +331,7 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
+
                 if (!_memoryStack.Contains(currentValue)) 
                 {
                     _memoryStack.Add(currentValue);
