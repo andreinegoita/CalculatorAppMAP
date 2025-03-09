@@ -218,7 +218,8 @@ namespace CalculatorProject
 
 
             string expression = $"{_calculatorModel.LastValue} {_calculatorModel.CurrentOperator} {currentValue}";
-            AddToHistory(expression, result.ToString());
+
+            AddToHistory(expression, result.ToString(), CurrentBase);
 
             if (CurrentBase != 10)
             {
@@ -249,19 +250,25 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue) && currentValue != 0)
             {
-                DisplayText = FormatNumber(1 / currentValue);
+                double result = 1 / currentValue;
+                DisplayText = FormatNumber(result);
+                AddToHistory($"1 / {currentValue}", result.ToString(), CurrentBase);
             }
             else
             {
                 DisplayText = "Error";
             }
-        }
 
+        }
+           
+        
         public void Square()
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
-                DisplayText = FormatNumber(currentValue * currentValue);
+                double result = currentValue * currentValue;
+                DisplayText = FormatNumber(result);
+                AddToHistory($"{currentValue} ^ 2", result.ToString(), CurrentBase);
             }
         }
 
@@ -270,7 +277,10 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue) && currentValue >= 0)
             {
-                DisplayText = FormatNumber(Math.Sqrt(currentValue));
+                double result = Math.Sqrt(currentValue);
+                DisplayText = FormatNumber(result);
+                AddToHistory($"√{currentValue}", result.ToString(), CurrentBase);
+
             }
             else
             {
@@ -282,7 +292,9 @@ namespace CalculatorProject
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
-                DisplayText = FormatNumber(currentValue / 100);
+                double result = currentValue / 100;
+                DisplayText = FormatNumber(result);
+                AddToHistory($"{currentValue}%", result.ToString(), CurrentBase);
             }
         }
 
@@ -416,6 +428,7 @@ namespace CalculatorProject
                 {
                     double result = EvaluateExpression(expression);
                     DisplayText = result.ToString();
+                    AddToHistory(expression, result.ToString(), CurrentBase);
                 }
                 catch (Exception)
                 {
@@ -555,10 +568,13 @@ namespace CalculatorProject
         }
 
 
-        public void AddToHistory(string expression, string result)
+        public void AddToHistory(string expression, string result, int baseResult)
         {
-            History.Add($"{expression} = {result}");
+            string resultInBase = baseResult != 10 ? ConvertToBase(double.Parse(result), baseResult) : result;
+            History.Add($"{expression} = {resultInBase} (base {baseResult})");
         }
+
+
 
         public void ClearHistory()
         {
