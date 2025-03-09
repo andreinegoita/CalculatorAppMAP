@@ -160,7 +160,14 @@ namespace CalculatorProject
             ConvertOption.Background = Brushes.White;
             ConvertOption.Foreground = Brushes.White;
             ConvertOption.BorderBrush = Brushes.White;
-
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel != null)
+            {
+                viewModel.CurrentBase = 10;
+                ConvertBaseShow.Text = "Current Base: 10";
+                Properties.Settings.Default.LastBaseUsed = "10";
+                Properties.Settings.Default.Save();
+            }
             SelectedOptionText.Text = "Standard Mode";  
             Properties.Settings.Default.LastSelectedMode = "Standard";
             Properties.Settings.Default.Save();
