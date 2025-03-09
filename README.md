@@ -29,6 +29,13 @@ This project is a WPF-based Calculator Application developed in C#. It features 
  * ┃ ┣ 📜 Calculator.xaml.cs
  * ┃ ┣ 📜 MemoryWindow.xaml
  * ┃ ┣ 📜 MemoryWindow.xaml.cs
+ * ┃ ┣ 📜 HistoryWindow.xaml
+ * ┃ ┣ 📜 HistoryWindow.xaml.cs
+ * ┣ 📂 Themes 
+ * ┃ ┣ 📜 ThemeDark.xaml
+ * ┃ ┣ 📜 ThemeLight.xaml
+ * ┃ ┣ 📜 ThemeGreen.xaml
+ * ┃ ┣ 📜 ThemeBlue.xaml
  * ┣ 📂 View
  * ┃ ┣ 📜 Calculator.xaml
  * ┃ ┣ 📜 Calculator.xaml.cs
@@ -38,7 +45,7 @@ This project is a WPF-based Calculator Application developed in C#. It features 
 # :gear: Design and Arhitecture
 The project is organized on MVVM (Model-View-Controller) design pattern:
  * Model: Calculator.cs 
- * View: About.xaml,Calculator.xaml,MemoryWindow.xaml
+ * View: About.xaml,Calculator.xaml,MemoryWindow.xaml,HistoryWindow.xaml
  * ViewModel: Calculator.cs
    
 # :rocket: Installation and run the project
