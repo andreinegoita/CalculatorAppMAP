@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CalculatorProject.View;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -359,6 +360,16 @@ namespace CalculatorProject
             {
                 MessageBox.Show("Expresia introdusă nu este validă!", "Eroare", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void HistoryButton_Click(object sender,RoutedEventArgs e)
+        {
+
+            var viewModel = DataContext as CalculatorViewModel;
+            if (viewModel == null) return;
+            HistoryWIndow historyWIndow = new HistoryWIndow();
+            historyWIndow.ShowDialog();
+
         }
 
 

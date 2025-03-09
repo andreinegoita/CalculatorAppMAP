@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CalculatorProject.Model;
+using CalculatorProject.View;
 
 
 namespace CalculatorProject
@@ -22,6 +24,8 @@ namespace CalculatorProject
         public List<double> MemoryStack => _memoryStack;
 
         private double _memoryValue = 0;
+
+        public ObservableCollection<string> History { get; set; } = new ObservableCollection<string>();
 
         public string DisplayText
         {
@@ -116,9 +120,10 @@ namespace CalculatorProject
             }
             else
             {
-                return number.ToString();
+                return number.ToString("G", CultureInfo.InvariantCulture); 
             }
         }
+
 
         public void ToggleDigitGrouping()
         {
@@ -211,6 +216,10 @@ namespace CalculatorProject
                     break;
             }
 
+
+            string expression = $"{_calculatorModel.LastValue} {_calculatorModel.CurrentOperator} {currentValue}";
+            AddToHistory(expression, result.ToString());
+
             if (CurrentBase != 10)
             {
                 DisplayText = ConvertToBase(result, CurrentBase);
@@ -276,6 +285,7 @@ namespace CalculatorProject
                 DisplayText = FormatNumber(currentValue / 100);
             }
         }
+
 
         public void AppendDecimal()
         {
@@ -544,6 +554,16 @@ namespace CalculatorProject
             return 0;
         }
 
+
+        public void AddToHistory(string expression, string result)
+        {
+            History.Add($"{expression} = {result}");
+        }
+
+        public void ClearHistory()
+        {
+            History.Clear();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

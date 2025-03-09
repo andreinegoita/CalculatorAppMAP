@@ -97,6 +97,9 @@
                     <MenuItem Header="Help">
                         <MenuItem Header="About" Click="AboutShowButton_Click"/>
                     </MenuItem>
+
+                    <MenuItem Header="History" Click="HistoryButton_Click">
+                    </MenuItem>
                 </MenuItem>
             </Menu>
 
