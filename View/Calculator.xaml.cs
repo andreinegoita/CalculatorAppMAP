@@ -12,7 +12,39 @@ namespace CalculatorProject
         {
             InitializeComponent();
             DataContext = new CalculatorViewModel();
+            ApplyTheme("Themes/ThemeLight.xaml");
             ConvertBaseShow.Text = "Current Base: 10";
+        }
+
+        private void ApplyTheme(string themePath)
+        {
+            ResourceDictionary newTheme = new ResourceDictionary
+            {
+                Source = new Uri(themePath, UriKind.Relative)
+            };
+
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(newTheme);
+        }
+
+        private void LightTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyTheme("Themes/ThemeLight.xaml");
+        }
+
+        private void DarkTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyTheme("Themes/ThemeDark.xaml");
+        }
+
+        private void BlueTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyTheme("Themes/ThemeBlue.xaml");
+        }
+
+        private void GreenTheme_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyTheme("Themes/ThemeGreen.xaml");
         }
 
         private void DigitButton_Click(object sender, RoutedEventArgs e)

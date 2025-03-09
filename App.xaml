@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:CalculatorProject"
              StartupUri="View\Calculator.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/ThemeLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
