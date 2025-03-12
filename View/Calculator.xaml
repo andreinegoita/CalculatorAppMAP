@@ -5,124 +5,122 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalculatorProject" 
         mc:Ignorable="d"
-        Title="Calculator" Height="690" Width="440"
+        Title="Calculator" Height="715" Width="425"
         KeyDown="Window_KeyDown"
         PreviewKeyDown="Window_PreviewKeyDown"
         Loaded="Window_Loaded"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Background="#1b2226">
+
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="2"
+                            CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="#373f3b"/>
+            <Setter Property="BorderBrush" Value="#373f3b"/>
+        </Style>
+    </Window.Resources>
     
-    <Viewbox Stretch="Uniform">
-            <Grid Margin="0,0,-18,-1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="22*"/>
-                    <ColumnDefinition Width="35*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBox x:Name="Display" FontSize="24" Margin="8,25,27,475" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"  BorderBrush="White" Grid.ColumnSpan="2" Grid.Row="1" />
-
-                <Grid Grid.Row="1" Margin='6,0,0,12' Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="7" Margin="-3,90,9,81" Grid.RowSpan="2" Click="DigitButton_Click "/>
-                    <Button  Width="96" Height="66" Grid.Row="2" Content="8" Margin="96,90,12,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="1" Content="9" Margin="93,90,15,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="0" Content="4" Margin="-3,42,9,11" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Content="5" Grid.ColumnSpan="2" Margin="96,42,12,11" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="1" Content="6" Margin="93,42,15,11" Grid.ColumnSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="0" Content="1" Margin="-3,111,9,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Content="2" Grid.ColumnSpan="2" Margin="96,111,12,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="1" Content="3" Grid.ColumnSpan="2" Margin="93,111,15,60" Grid.RowSpan="2" Click="DigitButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="4" Content="0" Margin="96,61,12,-9" Grid.ColumnSpan="2" Click="DigitButton_Click" />
-                    <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="0" Content="+/-" Margin="-3,61,9,-9" Click="ChangeSignButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="1" Content="." Margin="93,61,15,-9" Grid.ColumnSpan="2" Click="DecimalButton_Click"/>
-                    <Button  Name="OperatorDivideBy1" Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="1/x" Margin="-3,20,9,32"  Background="Gray"  Foreground="White" Click="InverseButton_Click"/>
-                    <Button  Name="Operatorx2" Width="96" Height="66" Grid.Row="2" Grid.Column="0" Content="x²" Margin="96,20,12,32"  Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="SquareButton_Click" />
-                    <Button  Name="OperatorSquare" Width="96" Height="66" Grid.Row="2" Grid.Column="1" Content="√x" Margin="93,20,15,32" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="SquareRootButton_Click"/>
-                    <Button  Name="OperatorModulo" Width="96" Height="66" Grid.Row="1" Grid.Column="0" Content="%" Margin="-4,68,10,103"  Grid.RowSpan="2" Background="Gray"  Foreground="White"  Click="PercentageButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="0" Content="CE" Click="BackspaceButton_Click" Margin="96,69,12,102"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
-                    <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="1" Content="C" Click="ClearAllButton_Click" Margin="93,69,15,102" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
-                    <Button  Width="96" Height="66" Grid.Row="1" Grid.Column="2" Content="X" Click="BackspaceButton_Click" Margin="90,69,18,102"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="Gray"  Foreground="White"/>
-                    <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="2" Content="÷" Margin="90,20,18,32"  Grid.ColumnSpan="2" Background="Gray"   Foreground="White" Click="OperatorButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="2" Grid.Column="2" Content="*" Margin="90,90,18,81" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="-" Margin="91,42,17,11" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="3" Grid.Column="2" Content="+" Grid.ColumnSpan="2" Margin="91,111,17,60" Grid.RowSpan="2"  Background="Gray"  Foreground="White" Click="OperatorButton_Click"/>
-                    <Button  Width="96" Height="66" Grid.Row="4" Grid.Column="2" Content="=" Margin="91,61,17,-9" Grid.ColumnSpan="2"  Background="DarkViolet" Click="EqualButton_Click"/>
-                    <Button Grid.Column="0" Content="MC"  Click="MemoryClearButton_Click" Margin="69,27,11,66"  Grid.Row="1" Background="Gray"  Foreground="White"/>
-                    <Button Content="MR" Click="MemoryRecallButton_Click" Margin="130,27,60,66"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White" />
-                    <Button Content="M+" Margin="56,27,9,66"  Grid.Column="1" Grid.Row="1" Click="MemoryAddButton_Click" Background="Gray"  Foreground="White" />
-                    <Button Grid.Column="2" Content="M-" Click="MemorySubtractButton_Click" Margin="13,27,0,66"  Grid.Row="1" HorizontalAlignment="Left" Width="48" Background="Gray"  Foreground="White"/>
-                    <Button Grid.Column="2" Content="MS"  Click="MemoryStoreButton_Click" Margin="80,27,98,67"  Grid.Row="1" Grid.ColumnSpan="2" Background="Gray"  Foreground="White"/>
-                    <Button Grid.Column="3" Content="MV"  Click="MemoryShowButton_Click" Margin="37,26,28,67" Grid.Row="1" Background="Gray" Foreground="White"/>
-
-                    <Menu Margin="1,0,72,66" Height="23" VerticalAlignment="Bottom" Grid.Row="1" Background="Gray" Foreground="White"   >
-                        <MenuItem  Name="ConvertOption" Header="Convert" RenderTransformOrigin="0.545,0.024"  Width="58" Height="23">
-                            <MenuItem Header="Base 2" Foreground="Black" Click="Base2_Click" />
-                            <MenuItem Header="Base 8" Foreground="Black" Click="Base8_Click"/>
-                            <MenuItem Header="Base 10" Foreground="Black" Click="Base10_Click"/>
-                            <MenuItem Header="Base 16" Foreground="Black" Click="Base16_Click"/>
-                        </MenuItem>
-                    </Menu>
-                </Grid>
-                <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-14,0,0" Grid.RowSpan="2" >
-                    <MenuItem Header="Settings" RenderTransformOrigin="0.545,0.024">
-                        <MenuItem Header="File" FlowDirection="LeftToRight">
-                            <MenuItem Header="Cut" Click="CutButton_Click"/>
-                            <MenuItem Header="Copy" Click="CopyButton_Click"/>
-                            <MenuItem Header="Paste" Click="PasteButton_Click"/>
-                            <MenuItem Header="Digit Grouping" Click="DigitGroupingButton_Click"/>
-                        </MenuItem>
-
-                        <MenuItem Header="Modes" FlowDirection="LeftToRight">
-                            <MenuItem Header="Mode Standard" Click="StandardMode_Click"/>
-                            <MenuItem Header="Mode Programming" Click="ProgrammingMode_Click"/>
-                        </MenuItem>
-
-                        <MenuItem Header="Complex Calculus" Click="ComplexOperationButton_Click">
-                        </MenuItem>
-
-                        <MenuItem Header="Help">
-                            <MenuItem Header="About" Click="AboutShowButton_Click"/>
-                        </MenuItem>
-
-                        <MenuItem Header="History" Click="HistoryButton_Click">
-                        </MenuItem>
-
-                        <MenuItem Header="Themes">
-                            <MenuItem Header="Light Theme" Click="LightTheme_Click"/>
-                            <MenuItem Header="Dark Theme" Click="DarkTheme_Click"/>
-                            <MenuItem Header="Blue Theme" Click="BlueTheme_Click"/>
-                            <MenuItem Header="Green Theme" Click="GreenTheme_Click"/>
-                        </MenuItem>
 
 
-                    </MenuItem>
-                </Menu>
+    <Canvas Margin="0,0,3,0">
+        
+        <TextBox x:Name="Display" FontSize="24" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"  BorderBrush="#1b2226" Grid.ColumnSpan="2" Grid.Row="1" Background="#1b2226" Foreground="White" Canvas.Left="8" Canvas.Top="108" Width="389" HorizontalAlignment="Center" VerticalAlignment="Top" Height="57" />
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="0" Content="+/-" Click="ChangeSignButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Top="598" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="4"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Content="0" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="105" Canvas.Top="598" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="1" Content="." Grid.ColumnSpan="2" Click="DecimalButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="206" Canvas.Top="598" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="2" Content="="  Background="#db9ee5" Click="EqualButton_Click" BorderBrush="#db9ee5" Foreground="Black" Style="{StaticResource RoundedButtonStyle}" Grid.ColumnSpan="2" Canvas.Left="308" Canvas.Top="598" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <TextBlock x:Name="SelectedOptionText" Margin="65,-17,120,0"  FontSize="18" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-                <TextBlock x:Name="ConvertBaseShow" Margin="11,-53,42,0"  FontSize="18" VerticalAlignment="Top" Height="21" />
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="0" Content="1" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Top="521" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="4"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Content="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Grid.ColumnSpan="2" Canvas.Left="105" Canvas.Top="521" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="1" Content="3" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="206" Canvas.Top="521"/>
+        <Button  Width="98" Height="73" Grid.Row="3" Grid.Column="2" Content="+" Grid.ColumnSpan="2" Grid.RowSpan="2"  Background="#2c3539"  Foreground="White" Click="OperatorButton_Click" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="308" Canvas.Top="521"/>
+
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="0" Content="4" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="4" Canvas.Top="444" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Content="5" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="105" Canvas.Top="444"/>
+        <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="1" Content="6" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="206" Canvas.Top="444"/>
+        <Button  Width="98" Height="73" Grid.Row="3" Grid.Column="2" Content="-" Grid.ColumnSpan="2" Background="#2c3539"  Foreground="White" Click="OperatorButton_Click" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="308" Canvas.Top="444" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Button  Width="98" Height="73" Grid.Row="2" Grid.Column="0" Content="7" Grid.RowSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Top="367" Canvas.Left="4" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Button  Width="98" Height="73" Grid.Row="2" Content="8" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="105" Canvas.Top="367"/>
+        <Button  Width="98" Height="73" Grid.Row="2" Grid.Column="1" Content="9" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b "  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="206" Canvas.Top="367"/>
+        <Button  Width="98" Height="74" Grid.Row="2" Grid.Column="2" Content="*" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#2c3539"  Foreground="White" Click="OperatorButton_Click" BorderBrush="#2c3539" Style="{StaticResource RoundedButtonStyle}" Canvas.Left="308" Canvas.Top="367" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Button  Name="OperatorDivideBy1" Width="98" Height="73" Grid.Row="2" Grid.Column="0" Content="1/x"  Background="#2c3539"  Foreground="White" Click="InverseButton_Click" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="4" Canvas.Top="290" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button  Name="Operatorx2" Width="98" Height="73" Grid.Row="2" Grid.Column="0" Content="x²"  Grid.ColumnSpan="2" Background="#2c3539"  Foreground="White" Click="SquareButton_Click" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="105" Canvas.Top="290" />
+        <Button  Name="OperatorSquare" Width="98" Height="73" Grid.Row="2" Grid.Column="1" Content="√x" Grid.ColumnSpan="2" Background="#2c3539"  Foreground="White" Click="SquareRootButton_Click" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="206" Canvas.Top="290"/>
+        <Button  Width="98" Height="73" Grid.Row="2" Grid.Column="2" Content="÷"  Grid.ColumnSpan="2" Background="#2c3539"   Foreground="White" Click="OperatorButton_Click" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="308" Canvas.Top="290"/>
+
+        <Button  Name="OperatorModulo" Width="98" Height="73" Grid.Row="1" Grid.Column="0" Content="%"  Grid.RowSpan="2" Background="#2c3539"  Foreground="White"  Click="PercentageButton_Click" BorderBrush="#2c3539" Style="{StaticResource RoundedButtonStyle}" Canvas.Left="4" Canvas.Top="213" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button  Width="98" Height="73" Grid.Row="1" Grid.Column="0" Content="CE" Click="BackspaceButton_Click"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#2c3539"  Foreground="White" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="105" Canvas.Top="213"/>
+        <Button  Width="98" Height="73" Grid.Row="1" Grid.Column="1" Content="C" Click="ClearAllButton_Click" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#2c3539"  Foreground="White" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="206" Canvas.Top="213"/>
+        <Button  Width="98" Height="73" Grid.Row="1" Grid.Column="2" Content="X" Click="BackspaceButton_Click"  Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#2c3539"  Foreground="White" BorderBrush="#2c3539"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="308" Canvas.Top="213" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <Button Grid.Column="0" Content="MC"  Click="MemoryClearButton_Click"  Grid.Row="1" Background="#1a2329"  Foreground="White" BorderBrush="#1a2329" Canvas.Left="18" Canvas.Top="184" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button Content="MR" Click="MemoryRecallButton_Click"  Grid.Row="1" Grid.ColumnSpan="2" Background="#1a2329"  Foreground="White"  BorderBrush="#1a2329" Canvas.Left="79" Canvas.Top="184" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="M+"  Grid.Column="1" Grid.Row="1" Click="MemoryAddButton_Click" Background="#1a2329"  Foreground="White"  BorderBrush="#1a2329" Canvas.Left="143" Canvas.Top="184"/>
+        <Button Grid.Column="2" Content="M-" Click="MemorySubtractButton_Click"  Grid.Row="1" HorizontalAlignment="Left" Width="48" Background="#1a2329"  Foreground="White"  BorderBrush="#1a2329" Canvas.Left="195" Canvas.Top="184" VerticalAlignment="Top"/>
+        <Button Grid.Column="2" Content="MS"  Click="MemoryStoreButton_Click"  Grid.Row="1" Grid.ColumnSpan="2" Background="#1a2329"  Foreground="White"  BorderBrush="#1a2329" Canvas.Left="283" Canvas.Top="184"/>
+        <Button Grid.Column="3" Content="MV"  Click="MemoryShowButton_Click" Grid.Row="1" Background="#1a2329" Foreground="White"  BorderBrush="#1a2329" Canvas.Left="366" Canvas.Top="184"/>
+
+        <Menu Margin="10,20,15,15" Height="23" VerticalAlignment="Bottom" Grid.Row="1" Background="#1a2329" Foreground="White"   >
+            <MenuItem  Name="ConvertOption" Header="Convert" RenderTransformOrigin="0.545,0.024"  Width="58" Height="23">
+                <MenuItem Header="Base 2" Foreground="Black" Click="Base2_Click" />
+                <MenuItem Header="Base 8" Foreground="Black" Click="Base8_Click"/>
+                <MenuItem Header="Base 10" Foreground="Black" Click="Base10_Click"/>
+                <MenuItem Header="Base 16" Foreground="Black" Click="Base16_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0" Grid.RowSpan="2" Background="#1a2329" Foreground="White">
+            <MenuItem Header="≡" FontSize="30" RenderTransformOrigin="0.545,0.024" >
+                <MenuItem Header="File" FlowDirection="LeftToRight">
+                    <MenuItem Header="Cut" Click="CutButton_Click"/>
+                    <MenuItem Header="Copy" Click="CopyButton_Click"/>
+                    <MenuItem Header="Paste" Click="PasteButton_Click"/>
+                    <MenuItem Header="Digit Grouping" Click="DigitGroupingButton_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="Modes" FlowDirection="LeftToRight">
+                    <MenuItem Header="Mode Standard" Click="StandardMode_Click"/>
+                    <MenuItem Header="Mode Programming" Click="ProgrammingMode_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="Complex Calculus" Click="ComplexOperationButton_Click">
+                </MenuItem>
+
+                <MenuItem Header="Help">
+                    <MenuItem Header="About" Click="AboutShowButton_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="History" Click="HistoryButton_Click">
+                </MenuItem>
+
+                <MenuItem Header="Themes">
+                    <MenuItem Header="Light Theme" Click="LightTheme_Click"/>
+                    <MenuItem Header="Dark Theme" Click="DarkTheme_Click"/>
+                    <MenuItem Header="Blue Theme" Click="BlueTheme_Click"/>
+                    <MenuItem Header="Green Theme" Click="GreenTheme_Click"/>
+                </MenuItem>
 
 
+            </MenuItem>
+        </Menu>
 
-
-
-
-
-
-            </Grid>
-        </Viewbox>
+        <TextBlock x:Name="SelectedOptionText"  FontSize="18"  Foreground="White" Canvas.Left="53" Canvas.Top="62" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ConvertBaseShow" Margin="11,-53,42,0"  FontSize="18" VerticalAlignment="Top" Height="21" Foreground="White"/>
+    </Canvas>
 </Window>
