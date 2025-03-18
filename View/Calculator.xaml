@@ -33,11 +33,11 @@
             <Setter Property="BorderBrush" Value="#373f3b"/>
         </Style>
     </Window.Resources>
-    
+
 
 
     <Canvas Margin="0,0,3,0">
-        
+
         <TextBox x:Name="Display" FontSize="24" IsReadOnly="True" Text="{Binding DisplayText,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right"  BorderBrush="#1b2226" Grid.ColumnSpan="2" Grid.Row="1" Background="#1b2226" Foreground="White" Canvas.Left="8" Canvas.Top="108" Width="389" HorizontalAlignment="Center" VerticalAlignment="Top" Height="57" />
         <Button  Width="98" Height="73" Grid.Row="4" Grid.Column="0" Content="+/-" Click="ChangeSignButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Top="598" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="4"/>
         <Button  Width="98" Height="73" Grid.Row="4" Content="0" Grid.ColumnSpan="2" Click="DigitButton_Click" Background="#373f3b" Foreground="White" BorderBrush="#373f3b"  Style="{StaticResource RoundedButtonStyle}" Canvas.Left="105" Canvas.Top="598" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -87,33 +87,33 @@
 
         <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0" Grid.RowSpan="2" Background="#1a2329" Foreground="White">
             <MenuItem Header="≡" FontSize="30" RenderTransformOrigin="0.545,0.024" >
-                <MenuItem Header="File" FlowDirection="LeftToRight">
-                    <MenuItem Header="Cut" Click="CutButton_Click"/>
-                    <MenuItem Header="Copy" Click="CopyButton_Click"/>
-                    <MenuItem Header="Paste" Click="PasteButton_Click"/>
-                    <MenuItem Header="Digit Grouping" Click="DigitGroupingButton_Click"/>
+                <MenuItem Header="File" FontSize="10" Foreground="Black" FlowDirection="LeftToRight">
+                    <MenuItem Header="Cut" FontSize="10" Foreground="Black" Click="CutButton_Click"/>
+                    <MenuItem Header="Copy" FontSize="10" Foreground="Black" Click="CopyButton_Click"/>
+                    <MenuItem Header="Paste" FontSize="10" Foreground="Black" Click="PasteButton_Click"/>
+                    <MenuItem Header="Digit Grouping" FontSize="10" Foreground="Black" Click="DigitGroupingButton_Click"/>
                 </MenuItem>
 
-                <MenuItem Header="Modes" FlowDirection="LeftToRight">
-                    <MenuItem Header="Mode Standard" Click="StandardMode_Click"/>
-                    <MenuItem Header="Mode Programming" Click="ProgrammingMode_Click"/>
+                <MenuItem Header="Modes"  FontSize="10" Foreground="Black" FlowDirection="LeftToRight">
+                    <MenuItem Header="Mode Standard" FontSize="10" Foreground="Black" Click="StandardMode_Click"/>
+                    <MenuItem Header="Mode Programming"  FontSize="10" Foreground="Black" Click="ProgrammingMode_Click"/>
                 </MenuItem>
 
-                <MenuItem Header="Complex Calculus" Click="ComplexOperationButton_Click">
+                <MenuItem Header="Complex Calculus" FontSize="10" Foreground="Black" Click="ComplexOperationButton_Click">
                 </MenuItem>
 
-                <MenuItem Header="Help">
-                    <MenuItem Header="About" Click="AboutShowButton_Click"/>
+                <MenuItem Header="Help" FontSize="10" Foreground="Black">
+                    <MenuItem Header="About"  FontSize="10" Foreground="Black" Click="AboutShowButton_Click"/>
                 </MenuItem>
 
-                <MenuItem Header="History" Click="HistoryButton_Click">
+                <MenuItem Header="History" FontSize="10" Foreground="Black" Click="HistoryButton_Click">
                 </MenuItem>
 
-                <MenuItem Header="Themes">
-                    <MenuItem Header="Light Theme" Click="LightTheme_Click"/>
-                    <MenuItem Header="Dark Theme" Click="DarkTheme_Click"/>
-                    <MenuItem Header="Blue Theme" Click="BlueTheme_Click"/>
-                    <MenuItem Header="Green Theme" Click="GreenTheme_Click"/>
+                <MenuItem Header="Themes" FontSize="10" Foreground="Black" >
+                    <MenuItem Header="Light Theme" FontSize="10" Foreground="Black" Click="LightTheme_Click"/>
+                    <MenuItem Header="Dark Theme" FontSize="10" Foreground="Black" Click="DarkTheme_Click"/>
+                    <MenuItem Header="Blue Theme" FontSize="10" Foreground="Black" Click="BlueTheme_Click"/>
+                    <MenuItem Header="Green Theme"  FontSize="10" Foreground="Black" Click="GreenTheme_Click"/>
                 </MenuItem>
 
 
@@ -121,6 +121,6 @@
         </Menu>
 
         <TextBlock x:Name="SelectedOptionText"  FontSize="18"  Foreground="White" Canvas.Left="53" Canvas.Top="62" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBlock x:Name="ConvertBaseShow" Margin="11,-53,42,0"  FontSize="18" VerticalAlignment="Top" Height="21" Foreground="White"/>
+        <TextBlock x:Name="ConvertBaseShow"  FontSize="18" VerticalAlignment="Center" Height="21" Foreground="White" Canvas.Left="129" Canvas.Top="21" HorizontalAlignment="Left"/>
     </Canvas>
 </Window>

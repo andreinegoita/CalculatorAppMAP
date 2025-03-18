@@ -116,7 +116,7 @@ namespace CalculatorProject
         {
             if (IsDigitGroupingEnabled)
             {
-                return number.ToString("N0", CultureInfo.CurrentCulture);
+                return number.ToString("N", CultureInfo.CurrentCulture);
             }
             else
             {
@@ -144,14 +144,19 @@ namespace CalculatorProject
         {
             if (IsDigitGroupingEnabled)
             {
-                
                 string cleanText = DisplayText.Replace(CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, "");
                 if (double.TryParse(cleanText, out double number))
                 {
-                    DisplayText = number.ToString("N0", CultureInfo.CurrentCulture);
+                   
+                    if (number == Math.Floor(number)) 
+                    {
+                        DisplayText = number.ToString("N0", CultureInfo.CurrentCulture);
+                    }
+                    
                 }
             }
         }
+
 
         public void AppendDigit(string digit)
         {
@@ -163,6 +168,7 @@ namespace CalculatorProject
             {
                 DisplayText += digit;
             }
+            ReformatDisplay();
         }
 
         public void SetOperator(string operatorSymbol)
@@ -305,6 +311,7 @@ namespace CalculatorProject
                 return;
 
             DisplayText += ".";
+            
         }
 
         public void Backspace()
