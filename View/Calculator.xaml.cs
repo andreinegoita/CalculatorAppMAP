@@ -145,7 +145,14 @@ namespace CalculatorProject
                 case Key.D8: case Key.NumPad8: viewModel.AppendDigit("8"); break;
                 case Key.D9: case Key.NumPad9: viewModel.AppendDigit("9"); break;
 
-                
+                case Key.A: viewModel.AppendDigit("A"); break;
+                case Key.B: viewModel.AppendDigit("B"); break;
+                case Key.C: viewModel.AppendDigit("C"); break;
+                case Key.D: viewModel.AppendDigit("D"); break;
+                case Key.E: viewModel.AppendDigit("E"); break;
+                case Key.F: viewModel.AppendDigit("F"); break;
+
+
                 case Key.Add: viewModel.SetOperator("+"); break;
                 case Key.Subtract: viewModel.SetOperator("-"); break;
                 case Key.Multiply: viewModel.SetOperator("*"); break;
